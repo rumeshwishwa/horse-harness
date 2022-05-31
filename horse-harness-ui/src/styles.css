@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+.warn {
+  color: orange;
+}
+
+.error {
+  color: red;
+}
+
+.submit {
+  width: 110px;
+  padding: 5px;
+  background: #1ABC9C;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+.clear {
+  width: 110px;
+  padding: 5px;
+  margin-right: 5px;
+  border: none;
+}

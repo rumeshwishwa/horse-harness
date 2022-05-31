@@ -1,0 +1,61 @@
+<h1>Welcome to Australian Horse Harness</h1>
+<h2>With Race Digital</h2>
+
+<form action="#" class="js">
+  <select class="form-select" [(ngModel)]="location" [ngModelOptions]="{standalone: true}">
+    <option value="" disabled selected>Select a Location</option>
+    <option value="ALBION_PARK">Albion Park</option>
+    <option value="GLOUCESTER_PARK">Gloucester Park</option>
+  </select>
+  <div style="display: block; height: 10px"></div>
+  <div class="input-file-container">
+    <input class="input-file" id="my-file" type="file" (change)="fileSelected($event)" accept="text/csv">
+    <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+  </div>
+  <p class="file-return">
+    {{fileName}}
+  </p>
+  <button class="clear" (click)="clear()">Clear</button>
+  <button class="submit" (click)="submit(location)">Submit</button>
+
+</form>
+
+<div class="container" style="width: 800px; margin: 10px auto" *ngIf="!isValid">
+  <h5 style="font-weight: bold">Validation Messages</h5>
+  <table style="width: 100%">
+    <tr style="width: 100%">
+      <th style="width: 10%">Line No:</th>
+      <th style="width: 90%">Message</th>
+    </tr>
+    <ng-container *ngFor="let response of responses">
+      <tr  *ngIf="response?.messages?.length > 0" style="width: 100%">
+        <td style="width: 10%">{{response.lineNo}}</td>
+        <td style="width: 90%">
+          <div *ngFor="let msg of response.messages" [ngClass]="{'warn': msg.messageLevel == 'WARN' , 'error': msg.messageLevel == 'ERROR'}">
+            {{msg.message}}
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+</div>
+
+<div class="container" *ngIf="isValid">
+  <p>Average Speed of Horses: {{insights.avgHorseSpeed | number}} m/s</p>
+  <p>Race winning Horses</p>
+  <table style="width: 100%">
+    <tr style="width: 100%">
+      <th style="width: 100%">Horse Name</th>
+    </tr>
+    <ng-container *ngFor="let name of insights.raceWinningHorses">
+      <tr  style="width: 100%">
+        <td style="width: 100%">
+          {{name}}
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+</div>
+
+<p class="txtcenter">It's just a test, not really usable.
+<p class="txtcenter copy">by Rumesh</p>

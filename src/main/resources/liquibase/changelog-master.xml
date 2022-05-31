@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.9.xsd">
+
+    <changeSet author="Rumesh" id="1">
+        <sqlFile dbms="h2"
+                 encoding="UTF-8"
+                 endDelimiter="\nGO"
+                 path="HORSE.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+    <changeSet author="Rumesh" id="2">
+        <sqlFile dbms="h2"
+                 encoding="UTF-8"
+                 endDelimiter="\nGO"
+                 path="RACE_MEETING.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+    <changeSet author="Rumesh" id="3">
+        <sqlFile dbms="h2"
+                 encoding="UTF-8"
+                 endDelimiter="\nGO"
+                 path="RACE.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+    <changeSet author="Rumesh" id="4">
+        <sqlFile dbms="h2"
+                 encoding="UTF-8"
+                 endDelimiter="\nGO"
+                 path="RACE_FIELD.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+    <changeSet author="Rumesh" id="5">
+        <sqlFile dbms="h2"
+                 encoding="UTF-8"
+                 endDelimiter="\nGO"
+                 path="SECTIONAL_DATA.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+    <changeSet author="Rumesh" id="6">
+        <sqlFile dbms="h2"
+                 encoding="UTF-8"
+                 endDelimiter="\nGO"
+                 path="FILE_UPLOAD.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+</databaseChangeLog>
