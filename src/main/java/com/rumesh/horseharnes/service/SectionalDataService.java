@@ -88,7 +88,8 @@ public class SectionalDataService {
         Optional<Horse> horse = horseValidation(record, messages);
         raceFieldValidation(record, race, horse, messages);
         final SectionalData data = createData(record, horse, race);
-        record.setRecordId(data.getSectionalDataId());
+        Optional.ofNullable(data)
+                .ifPresent(secData -> record.setRecordId(secData.getSectionalDataId()));
         response.setRecord(record);
         response.setMessages(messages);
         return response;
@@ -97,7 +98,7 @@ public class SectionalDataService {
     private Optional<Race> raceValidation(SectionalDataRecord record,
                                   List<ResponseMessage> messages) {
         final Optional<Race> race = raceService.getRaceByLocationAndRaceNoAndDate(record);
-        if (race.isEmpty()) {
+        if (!race.isPresent()) {
             messages.add(getResponseMessage(
                     String.format("No race found for input combination -> Location: %s , Race No: %s , Date: %s",
                             record.getRaceLocation(), record.getRaceNo(), record.getRaceDate().toString()),
@@ -109,10 +110,10 @@ public class SectionalDataService {
     private Optional<Horse> horseValidation(SectionalDataRecord record,
                                     List<ResponseMessage> messages) {
         Optional<Horse> horse = horseService.findByHorseName(record.getHorseName());
-        if (horse.isEmpty()) {
+        if (!horse.isPresent()) {
             horse = horseService.searchByHorseName(record.getHorseName());
         }
-        if (horse.isEmpty()) {
+        if (!horse.isPresent()) {
             messages.add(getResponseMessage(
                     String.format("No horse found for name with %s", record.getHorseName()),
                     MessageLevel.ERROR));
@@ -125,7 +126,7 @@ public class SectionalDataService {
                                                           Optional<Horse> horse,
                                                           List<ResponseMessage> messages) {
         final Optional<RaceField> raceField = raceFieldService.findByRace(race, horse);
-        if (raceField.isEmpty()) {
+        if (!raceField.isPresent()) {
             messages.add(getResponseMessage(
                     String.format("No race field found for input combination -> Location: %s , Race No: %s , Date: %s , Horse Name: %s",
                             record.getRaceLocation(), record.getRaceNo(), record.getRaceDate().toString(),

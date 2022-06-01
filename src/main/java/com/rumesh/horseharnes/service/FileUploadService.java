@@ -26,6 +26,6 @@ public class FileUploadService {
     }
 
     public boolean isAllowToSubmit(String fileName) {
-        return fileUploadRepository.findByFileNameAndIsValidInsert(fileName, Boolean.TRUE).isEmpty();
+        return !fileUploadRepository.findByFileNameAndIsValidInsert(fileName, Boolean.TRUE).isPresent();
     }
 }

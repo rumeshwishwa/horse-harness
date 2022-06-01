@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -126,6 +127,8 @@ public class SectionalDataServiceTest {
                 .thenReturn(sectionalDataRecords);
         when(sectionalDataRepository.save(sectionalData1)).thenReturn(sectionalData1);
         when(sectionalDataRepository.save(sectionalData2)).thenReturn(sectionalData2);
+        when(sectionalDataService.createData(sectionalDataRecords.get(0), Optional.of(sectionalData1.getHorse()),
+                Optional.of(sectionalData1.getRace()))).thenReturn(sectionalData1);
         when(fileUploadService.isAllowToSubmit("test.csv")).thenReturn(Boolean.TRUE);
         final List<ValidationResponse> validationResponses =
                 sectionalDataService.storeSectionalData(mockMultipartFile, "ALBION_PARK");
